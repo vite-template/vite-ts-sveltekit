@@ -2,6 +2,7 @@
 	import { enhance } from '$lib/form';
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import { post } from './ajax.js'
 
 	type Todo = {
 		uid: string;
@@ -12,6 +13,16 @@
 	};
 
 	export let todos: Todo[];
+	let ajax = () => {
+		console.log(123)
+		post({bosy: 123})
+			.then(res => {
+				
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	}
 </script>
 
 <svelte:head>
@@ -21,7 +32,7 @@
 
 <div class="todos">
 	<h1>Todos</h1>
-
+	<div on:click={ajax}>123</div>
 	<form
 		class="new"
 		action="/todos"
